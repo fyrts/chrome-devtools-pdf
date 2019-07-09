@@ -1,0 +1,20 @@
+{
+    "name": "fyrts/chrome-devtools-pdf",
+    "description": "A simple PHP library for generating PDF files using the Chrome DevTools Protocol",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["php","pdf","chrome","chromium","devtools"],
+    "require": {
+        "jakubkulhan/chrome-devtools-protocol": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Sam Feyaerts",
+            "email": "sam@feyaerts.me"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": { "ChromeDevToolsPdf\\": "src/" }
+    }
+}
