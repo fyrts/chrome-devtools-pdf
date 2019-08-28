@@ -101,6 +101,19 @@ trait PageSetupTrait
     }
 
     /**
+     * @param array $paperSize
+     *
+     * @return self
+     */
+    public function setPaperSize(array $paperSize): self
+    {
+        if (count($paperSize) < 2) throw new \Exception('Invalid paper size. Array should contain both width and height.');
+        $paperSize = array_values($paperSize);
+        $this->setPaperWidth($paperSize[0])->setPaperHeight($paperSize[1]);
+        return $this;
+    }
+
+    /**
      * @param int|float|null $marginTop
      *
      * @return self
