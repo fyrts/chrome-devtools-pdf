@@ -73,6 +73,14 @@ Available options are as follows:
     - totalPages: total pages in the document
 - `setFooterTemplate(string)` – HTML template for the print footer. Should use the same format as the headerTemplate.
 - `setPreferCSSPageSize(true|false)` – Whether or not to prefer page size as defined by css. Defaults to false, in which case the content will be scaled to fit the paper size.
+- `setPaperSize(array)` – Array containing paper width and height in inches. Defaults to 8.5 and 11 inches respectively. The following constants are available as presets:
+    - PaperSize::A0, PaperSize::A1, PaperSize::A2, PaperSize::A3, PaperSize::A4, PaperSize::A5, PaperSize::A6, PaperSize::A7 and PaperSize::A8
+    - PaperSize::JUNIOR_LEGAL
+    - PaperSize::GOVERNMENT_LETTER
+    - PaperSize::LETTER
+    - PaperSize::LEGAL
+    - PaperSize::TABLOID
+    - PaperSize::LEDGER
 
 
 The library can be implemented asynchronously. This can be useful when printing multiple pages. When doing so, use the `await()` method to prevent the script from terminating prematurely.
