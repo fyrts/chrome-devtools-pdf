@@ -8,10 +8,30 @@ trait PageSetupTrait
 {
     protected $pdfRequest;
 
-    protected function getPdfRequest()
+    protected $headerHtml;
+    protected $footerHtml;
+
+    protected function getPdfRequest(): PrintToPDFRequest
     {
         if (is_null($this->pdfRequest)) $this->pdfRequest = new PrintToPDFRequest();
         return $this->pdfRequest;
+    }
+
+    protected function buildPdfRequest(): PrintToPDFRequest
+    {
+        $request = clone $this->getPdfRequest();
+
+        // Add header and footer
+        if ($this->headerHtml || $this->footerHtml) {
+            $width = floatval($request->paperWidth ?? 8.5);
+            $height = floatval($request->paperHeight ?? 11);
+            $html_template = new HtmlTemplateBuilder($width, $height);
+            $request->displayHeaderFooter = true;
+            $request->headerTemplate = $html_template->createTemplate($this->headerHtml, $this->footerHtml);
+            if ($this->footerHtml) $request->footerTemplate = '<span></span>';
+        }
+
+        return $request;
     }
 
     /**
@@ -165,6 +185,28 @@ trait PageSetupTrait
     public function setFooterTemplate(?string $footerTemplate): self
     {
         $this->getPdfRequest()->footerTemplate = $footerTemplate;
+        return $this;
+    }
+
+    /**
+     * @param string|null $headerHtml
+     *
+     * @return self
+     */
+    public function setHeaderHtml(?string $headerHtml): self
+    {
+        $this->headerHtml = $headerHtml;
+        return $this;
+    }
+
+    /**
+     * @param string|null $footerHtml
+     *
+     * @return self
+     */
+    public function setFooterHtml(?string $footerHtml): self
+    {
+        $this->footerHtml = $footerHtml;
         return $this;
     }
 

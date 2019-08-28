@@ -69,7 +69,7 @@ class Pdf
         $page = $this->getPage();
         $this->await();
 
-        $response = $page->printToPDF($context, $this->getPdfRequest());
+        $response = $page->printToPDF($context, $this->buildPdfRequest());
         $this->close();
         return base64_decode($response->data);
     }
@@ -87,12 +87,12 @@ class Pdf
         $page = $this->getPage();
 
         if ($this->isReady) {
-            $response = $page->printToPDF($context, $this->getPdfRequest());
+            $response = $page->printToPDF($context, $this->buildPdfRequest());
             $callback(base64_decode($response->data));
             $this->close();
         } else {
             $page->addLoadEventFiredListener(function() use ($page, $context, $callback) {
-                $response = $page->printToPDF($context, $this->getPdfRequest());
+                $response = $page->printToPDF($context, $this->buildPdfRequest());
                 $callback(base64_decode($response->data));
                 $this->close();
             });
