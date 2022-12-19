@@ -1,7 +1,7 @@
 ChromeDevToolsPdf
 =================
 
-ChromeDevToolsPdf provides a wrapper around [jakubkulhan/chrome-devtools-protocol](https://github.com/jakubkulhan/chrome-devtools-protocol) for fast and predictable generation of PDF files using the Chrome DevTools Protocol.
+ChromeDevToolsPdf provides a wrapper around [fyrts/chrome-devtools-protocol](https://github.com/fyrts/chrome-devtools-protocol) for fast and predictable generation of PDF files using the Chrome DevTools Protocol.
 
 ## Setup
 Start off by installing a recent version of Chrome/Chromium, then install the package through [composer](http://getcomposer.org):
